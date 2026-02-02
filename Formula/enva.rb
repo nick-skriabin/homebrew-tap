@@ -1,8 +1,8 @@
 class Enva < Formula
   desc "Per-directory environment variable manager with automatic shell integration"
   homepage "https://github.com/nick-skriabin/enva"
-  url "https://github.com/nick-skriabin/enva/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "3e4c6f28d443cc44740edd3a248039b74af12a2dc8992eed53a372e56c31b863"
+  url "https://github.com/nick-skriabin/enva/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "fdf38fcdae77a241c92a547a0540fbec49f87cee1a41c4ff1aa48f3ecf07ba38"
   license "MIT"
 
   depends_on "go" => :build
