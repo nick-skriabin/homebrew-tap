@@ -1,0 +1,67 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+
+permissions:
+  contents: write
+
+jobs:
+  update-aion:
+    name: Update Aion Formula
+    runs-on: ubuntu-latest
+    if: github.event.client_payload.formula == 'aion'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Aion formula
+        run: |
+          mkdir -p Formula
+          cat > Formula/aion.rb << 'EOF'
+          class Aion < Formula
+            desc "Terminal calendar client with vim-style keybindings"
+            homepage "https://github.com/nick-skriabin/aion"
+            version "${{ github.event.client_payload.version }}"
+            license "MIT"
+
+            on_macos do
+              on_arm do
+                url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-darwin-arm64"
+                sha256 "${{ github.event.client_payload.sha256_darwin_arm64 }}"
+              end
+              on_intel do
+                url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-darwin-x64"
+                sha256 "${{ github.event.client_payload.sha256_darwin_x64 }}"
+              end
+            end
+
+            on_linux do
+              on_arm do
+                url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-linux-arm64"
+                sha256 "${{ github.event.client_payload.sha256_linux_arm64 }}"
+              end
+              on_intel do
+                url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-linux-x64"
+                sha256 "${{ github.event.client_payload.sha256_linux_x64 }}"
+              end
+            end
+
+            def install
+              bin.install Dir["*"].first => "aion"
+            end
+
+            test do
+              assert_predicate bin/"aion", :executable?
+            end
+          end
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/aion.rb
+          git diff --staged --quiet || git commit -m "aion ${{ github.event.client_payload.version }}"
+          git push
