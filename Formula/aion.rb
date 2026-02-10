@@ -1,28 +1,28 @@
 class Aion < Formula
   desc "Terminal calendar client with vim-style keybindings"
   homepage "https://github.com/nick-skriabin/aion"
-  version "0.1.5"
+  version "0.1.6"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-darwin-arm64"
-      sha256 "d42e44b5533554f99f87f0dd301f370ac30a45ee79adce91247f82e0ff62681f"
+      sha256 "e0890aabb093d419781da7d082a92f2586b7801b8ed5fa4cb36875d81d6fa0b5"
     end
     on_intel do
       url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-darwin-x64"
-      sha256 "4f98446944405c328c438ecd94d7cfbc32619077646f23a2afd960332e75ee99"
+      sha256 "8be083fe6aa13c0edd8d9ed4d5eeecb07da4fdfbc65b68d63373fc0e9e13e639"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-linux-arm64"
-      sha256 "00552fced004de461f6898a19b643bfce5931e0f2db1312a6ffa7b05a279a18d"
+      sha256 "6b85e6290022cebe99815f6172c8124032da335e4796bbb6d6ba777428c7e07b"
     end
     on_intel do
       url "https://github.com/nick-skriabin/aion/releases/download/v#{version}/aion-linux-x64"
-      sha256 "596bc7ecdf32d555ac2d1aa6b6f021453f99cccedcad944c298e2f0084ce4910"
+      sha256 "6794eb0f1afbb5834ddae2454d37132be715bd952dfffd7f073b399cd6290b9f"
     end
   end
 
